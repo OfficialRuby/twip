@@ -5,6 +5,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('tweet.urls')),
+    path('accounts/', include('dash.urls')),
 ]
 
 if settings.DEBUG:
@@ -12,4 +14,3 @@ if settings.DEBUG:
                           document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
-

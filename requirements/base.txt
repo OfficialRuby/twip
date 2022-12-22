@@ -19,6 +19,7 @@ requests-oauthlib
 six
 sqlparse
 toml
+tweepy
 urllib3
 python-decouple
 pytz

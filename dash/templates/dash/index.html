@@ -1,0 +1,162 @@
+{% extends 'dash/base.html' %}
+{% load static %}
+{% block title %}
+User List
+{% endblock title %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'dash/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'dash/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'dash/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0"> Authenticated User List</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'dash:home' %}">Home</a></li>
+                        <li class="breadcrumb-item active"> Authenticated User List</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Projects</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <table id="postList" class="table table-striped projects">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 2%">
+                                            #
+                                        </th>
+                                        <th style="width: 20%">
+                                            Display Name
+                                        </th>
+                                        <th style="width: 30%">
+                                            Access Token
+                                        </th>
+                                        <th style="width: 30%">
+                                            Access Token Secret
+                                        </th>
+                                        <th style="width: 9%" class="text-center">
+                                            Status
+                                        </th>
+                                        <th style="width: 9%">
+                                            Username
+
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        
+                                        <td>
+                                            {{forloop.counter}}
+                                        </td>
+                                        <td>
+                                            <a>
+                                                {{user.screen_name}}
+                                            </a>
+                                            <br />
+                                            <small>
+                                                {{user.timestamp}}
+                                            </small>
+                                        </td>
+                                        <td>
+                                         {{user.access_token}}
+                                        </td>
+                                        <td class="project_progress">
+                                           {{user.access_token_secret}}
+                                        </td>
+                                        <td class="project-state">
+                                            <span class="badge badge-{{user.status}}">{{user.get_status_display}}</span>
+                                        </td>
+                                        <td>
+                                            @{{user.username}}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+
+
+
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+</div>
+<!-- /.content-wrapper -->
+
+{% endblock content %}
+
+{% block extra_script %}
+<script src="{% static 'dash/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'dash/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'dash/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'dash/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'dash/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+
+
+<script>
+    $(function () {
+        $("#postList").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#postList_wrapper .col-md-6:eq(0)');
+
+    });
+</script>
+{% endblock extra_script %}

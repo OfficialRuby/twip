@@ -1,0 +1,35 @@
+{% load static %}
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+ 
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    
+
+    
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      {% with request.resolver_match.url_name as url_name %}
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item ">
+          <a href="{% url 'dash:home' %}" class="nav-link  {% if url_name == 'home' %} active {% endif %} ">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+
+      
+
+   
+      </ul>
+      {% endwith %}
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,89 @@
+{% extends 'dash/base.html' %}
+{% block title %}
+Messages
+{% endblock title %}
+
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Messages</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{% url 'dash:home' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Messages
+                        </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container">
+
+            <!-- Timelime example  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- The time line -->
+                    <div class="timeline">
+                        <!-- timeline time label -->
+                        {% for message in messages %}
+                        
+                        <div class="time-label">
+                            <span class="bg-red"> {{message.timestamp|date}} </span>
+                        </div>
+                        
+                        
+
+                        
+
+
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
+                        <div>
+                            <i class="fas fa-envelope bg-blue"></i>
+                            <div class="timeline-item">
+                                <span class="time"><i class="fas fa-clock"></i> {{message.timestamp|timesince}} ago </span>
+                                <h3 class="timeline-header"><a href="mailto:{{message.email}}">{{message.sender}}</a> sent you an email</h3>
+
+                                <div class="timeline-body">
+                                  {{message.content|truncatechars:120}}
+                                </div>
+                                <div class="timeline-footer">
+                                    <a class="btn btn-primary btn-sm">Read more</a>
+                                    <a class="btn btn-danger btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% endfor %}
+
+
+                       
+
+
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+        <!-- /.timeline -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{% endblock content %}

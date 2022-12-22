@@ -19,6 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     # project apps
+    'tweet',
+    'dash',
     # django allauth apps
     'allauth',
     'allauth.account',
