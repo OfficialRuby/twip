@@ -3,8 +3,6 @@ from .base import *
 from sentry_sdk.integrations.django import DjangoIntegration
 import sentry_sdk
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-PAYSTACK_PUBLIC_KEY = config("PAYSTACK_PUBLIC_KEY")
-PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 
 DATABASES = {
     'default': {

@@ -30,12 +30,12 @@ class CallbackView(View):
             return redirect('home')
         elif oauth_token and oauth_verifier:
             twitter_api_obj = TwitterAPI()
-            auth = AuthToken.objects.get(auth_token=oauth_token)
+            auth = AuthToken.objects.filter(auth_token=oauth_token).first()
 
             access_token, access_secret = twitter_api_obj.get_access_token(
                 oauth_verifier, auth.auth_token, auth.auth_token_secret)
-            UserToken.objects.create(access_token=access_token,
-                                     access_token_secret=access_secret)
+            UserToken.objects.get_or_create(access_token=access_token,
+                                            access_token_secret=access_secret)
             messages.success(request, 'You have successfully authorized this app')
             return redirect('home')
         return redirect('home')
