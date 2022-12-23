@@ -18,14 +18,14 @@ DATABASES = {
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
-sentry_sdk.init(
-    dsn=config('SENTRY_DNS'),
-    integrations=[
-        DjangoIntegration(),
-    ],
-    traces_sample_rate=1.0,
-    send_default_pii=True
-)
+# sentry_sdk.init(
+#     dsn=config('SENTRY_DNS'),
+#     integrations=[
+#         DjangoIntegration(),
+#     ],
+#     traces_sample_rate=1.0,
+#     send_default_pii=True
+# )
 
 # HTTPS
 # Set this to True to avoid transmitting the CSRF cookie over HTTP accidentally.
