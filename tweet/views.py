@@ -36,12 +36,7 @@ class CallbackView(View):
                 oauth_verifier, auth.auth_token, auth.auth_token_secret)
             UserToken.objects.get_or_create(access_token=access_token,
                                             access_token_secret=access_secret)
+
             messages.success(request, 'You have successfully authorized this app')
             return redirect('home')
         return redirect('home')
-
-    def post(self, request, *args, **kwargs):
-        twitter_api_obj = TwitterAPI()
-        authorize = twitter_api_obj.perform_auth()
-
-        return redirect(authorize.oauth_url)
