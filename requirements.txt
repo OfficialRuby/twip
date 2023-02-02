@@ -7,3 +7,4 @@ psycopg2==2.9.5
 psycopg2-binary==2.9.5
 sqlparse==0.4.3
 whitenoise==6.3.0
+tweepy==4.12.1
