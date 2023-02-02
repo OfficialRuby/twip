@@ -8,7 +8,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'randomly-g3n3rate_st!ng')
 DEBUG = os.getenv('DEBUG', True)
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ruby.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
