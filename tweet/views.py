@@ -46,13 +46,14 @@ class CallbackView(View):
             # see `https://docs.tweepy.org/en/stable/getting_started.html#hello-tweepy`
             '''
             Let mongoDB code goes here
+            below is an example
             '''
-            api = twitter_api_obj.create_api_object(
-                access_token, access_secret)
-            timeline = api.home_timeline()
-            with open('response.txt', 'w') as f:
-                for tweet in timeline:
-                    f.write(str(tweet))
+            # api = twitter_api_obj.create_api_object(
+            #     access_token, access_secret)
+            # timeline = api.home_timeline()
+            # with open('response.txt', 'w') as f:
+            #     for tweet in timeline:
+            #         f.write(str(tweet))
 
             messages.success(
                 request, 'You have successfully authorized this app')
