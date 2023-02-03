@@ -6,6 +6,7 @@ from collections import namedtuple
 import os
 import tweepy
 from django.conf import settings
+from tweet import app_settings
 
 
 class TwitterAPI:
@@ -18,7 +19,8 @@ class TwitterAPI:
         self.api_secret = os.getenv('TWITTER_API_SECRET')
         self.client_id = os.getenv('TWITTER_CLIENT_ID')
         self.client_secret = os.getenv('TWITTER_CLIENT_SECRET')
-        self.oauth_callback_url = os.getenv('TWITTER_OAUTH_CALLBACK_URL')
+        self.oauth_callback_url = os.getenv(
+            'TWITTER_OAUTH_CALLBACK_URL')
 
     def perform_auth(self):
         '''
@@ -71,3 +73,10 @@ class TwitterAPI:
         except Exception as e:
             print(e)
             return None
+
+    def create_api_object(self, access_token, access_token_secret):
+        auth = tweepy.OAuth1UserHandler(
+            consumer_key=self.api_key, consumer_secret=self.api_secret, access_token=access_token, access_token_secret=access_token_secret
+        )
+        api = tweepy.API(auth)
+        return api

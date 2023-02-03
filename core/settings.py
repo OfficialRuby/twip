@@ -1,14 +1,13 @@
 import os
 from pathlib import Path
-
+from tweet import app_settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'randomly-g3n3rate_st!ng')
+SECRET_KEY = os.getenv('SECRET_KEY', 'randomly-g3n3rate_str!ng')
 DEBUG = os.getenv('DEBUG', True)
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-ALLOWED_HOSTS = ['ruby.herokuapp.com']
+ALLOWED_HOSTS = app_settings.ALLOWED_HOST
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -93,9 +92,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-SITE_ID = 1
 
 
 LANGUAGE_CODE = 'en-us'
